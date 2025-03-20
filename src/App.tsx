@@ -9,7 +9,7 @@ import OngoingProjects from "./pages/projects/OngoingProjects";
 import DesignsIndex from "./pages/designs/DesignsIndex";
 import SingleStoreyHouses from "./pages/designs/SingleStoreyHouses";
 import Footer from "./components/Footer";
-import Property from "./pages/property";
+import Property from "./pages/Property";
 import NavbarExample from "./components/nav";
 import Navbar from "./components/nav-bar";
 import { useLocation } from "react-router-dom";
