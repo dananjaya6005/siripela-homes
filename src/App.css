@@ -1,0 +1,56 @@
+.root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+
+}
+
+
+/* Adjust max-width for larger screens */
+@media (min-width: 1920px) {
+  .root {
+    max-width: 1536px; /* You can set this to whatever value feels appropriate */
+  }
+}
+
+@media(min-width : 1536px) {
+  .root {
+    max-width: 1400px;
+  }
+}
+
+@media(max-width : 768px) {
+  .root {
+    padding: 1rem;
+  }
+}
+
+.footer {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: var(--color-sidebar);
+  color: var(--color-sidebar-foreground);
+}
+
+
+.custom-shape-divider-bottom-1742205806 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1742205806 svg {
+  position: relative;
+  display: block;
+  width: calc(147% + 1.3px);
+  height: 290px;
+}
+
+.custom-shape-divider-bottom-1742205806 .shape-fill {
+  fill: #FFFFFF;
+ 
+}
