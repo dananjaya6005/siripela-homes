@@ -23,7 +23,7 @@ const transition = {
 
 export default function Navbar() {
   const [active, setActive] = useState<string | null>(null)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <header className="fixed top-4 inset-x-0 rounded-xl z-50 drop-shadow-md mx-4
@@ -43,9 +43,9 @@ export default function Navbar() {
 
                 <MenuItem  setActive={setActive} active={active} item="Projects">
                     <div className="grid grid-cols-1 gap-4 p-4 w-[300px]">
-                        <HoveredLink href="/projects/3d-design">3D Design</HoveredLink>
-                        <HoveredLink href="/projects/ongoing">Ongoing Projects</HoveredLink>
-                        <HoveredLink href="/projects/completed">Completed Projects</HoveredLink>
+                        <HoveredLink to="/projects/designs3d">3D Design</HoveredLink>
+                        <HoveredLink to="/projects/ongoing-project">Ongoing Projects</HoveredLink>
+                        <HoveredLink to="/projects/completed-project">Completed Projects</HoveredLink>
                     </div>
                 </MenuItem>
 
@@ -54,19 +54,19 @@ export default function Navbar() {
                         <ProductItem
                             title="Single Storey"
                             description="Modern single storey house designs"
-                            href="/designs/single-storey"
+                            href="/designs/single-storey-houses"
                             src="https://files.catbox.moe/hbigqj.jpg"
                         />
                         <ProductItem
                             title="Multi Storey"
                             description="Elegant multi-level residential buildings"
-                            href="/designs/multi-storey"
+                            href="/designs/multi-storey-houses"
                             src="https://files.catbox.moe/1b7bcx.jpg"
                         />
                         <ProductItem
                             title="Commercial Buildings"
                             description="Professional commercial architecture"
-                            href="/designs/commercial"
+                            href="/designs/commercial-buildings"
                             src="https://files.catbox.moe/odnnav.png"
                         />
                     </div>
@@ -271,7 +271,7 @@ const ProductItem = ({
 
 const HoveredLink = ({ children, ...rest }: any) => {
   return (
-    <Link {...rest} className="block p-2 text-sm hover:bg-muted rounded-md transition-colors">
+    <Link {...rest} className="block p-2  text-sm hover:bg-muted rounded-md transition-colors">
       {children}
     </Link>
   )

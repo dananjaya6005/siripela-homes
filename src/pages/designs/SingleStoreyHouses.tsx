@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropertyCard from '@/components/property-card'
+import supabase from '@/lib/supabaseClient';
 
 
 const sampleSingleStoreyHouses = [
@@ -48,6 +49,27 @@ const sampleSingleStoreyHouses = [
 ]
 
 const SingleStoreyHouses = () => {
+
+  useEffect(() => {
+    fetchSingleStoreyHouses()
+  }, [])
+
+  const fetchSingleStoreyHouses = async () => {
+    const { data, error } = await supabase
+      .from('single_storey_houses')
+      .select('*')
+
+    if (error) {
+      console.error('error', error)
+      return
+    }
+
+    console.log('data',
+      data) 
+  }
+
+
+
   return (
     <div className="container px-4 py-12 mx-auto bg-gradient-to-b from-white to-secondary/5">
       <div className="mb-10 text-left">

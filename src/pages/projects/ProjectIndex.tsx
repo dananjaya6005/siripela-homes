@@ -1,8 +1,11 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
 
 const ProjectIndex = () => {
   return (
-    <div>ProjectIndex</div>
+    <div>
+      <Outlet />
+    </div>
   )
 }
 

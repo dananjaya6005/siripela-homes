@@ -13,6 +13,9 @@ import Property from "./pages/Property";
 import NavbarExample from "./components/nav";
 import Navbar from "./components/nav-bar";
 import { useLocation } from "react-router-dom";
+import PropertyListing from "./pages/PropertyByID";
+import MultiStoreyHouses from "./pages/designs/MultiStoreyHouses";
+import CommercialBuildings from "./pages/designs/CommercialBuildings";
 
 
 function App() {
@@ -21,6 +24,9 @@ function App() {
 
   return (
     <>
+    <div  >
+
+    </div>
       {/* <NavbarExample /> */}
       <Navbar />  
 
@@ -64,15 +70,24 @@ function App() {
           }
         >
           <Route path="single-storey-houses" element={<SingleStoreyHouses />} />
+          <Route path="multi-storey-houses" element={<MultiStoreyHouses />} />
+          <Route path="commercial-buildings" element={<CommercialBuildings />} />
+           
+
         </Route>
         <Route
-          path="property"
+          path="properties"
           element={
-            <div className="root">
+            <div className="root ">
               <Property />
             </div>
           }
-        />
+        >
+          <Route path=":propertyId" element={<PropertyListing />} />
+        </Route>
+
+
+
         <Route
           path="*"
           element={

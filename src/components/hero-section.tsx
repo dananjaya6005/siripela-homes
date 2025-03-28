@@ -1,8 +1,12 @@
 import { motion } from "framer-motion"
 import { ChevronRight, Clock, Award, Zap, Lightbulb, Shield, Fingerprint } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { n } from "node_modules/framer-motion/dist/types.d-B50aGbjN"
+import { useNavigate } from "react-router-dom"
 
 export default function HeroSection() {
+
+  const navigate = useNavigate()
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -34,9 +38,9 @@ export default function HeroSection() {
   ]
 
   return (
-    <div className="relative overflow-hidden  dark:from-zinc-900 z-10 ">
+    <div className="relative overflow-hidden z-10 ">
       {/* Background pattern */}
-      <div className="absolute inset-0 bg-grid-zinc-200/50 [mask-image:linear-gradient(to_bottom,white,transparent)] dark:bg-grid-zinc-700/25"></div>
+      <div className="absolute  inset-0 bg-grid-zinc-200/50 [mask-image:linear-gradient(to_bottom,white,transparent)] dark:bg-grid-zinc-700/25"></div>
 
       <div className="container   max-[1600px]:max-w-7xl  relative mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:py-32">
         <motion.div
@@ -46,23 +50,26 @@ export default function HeroSection() {
           variants={containerVariants}
         >
           {/* Left column - Text content */}
-          <div className="flex flex-col justify-center ">
+          <div className="flex flex-col justify-center backdrop-blur-xl p-4  py-8 rounded-2xl ">
             <motion.div variants={itemVariants}>
-              <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl md:text-6xl">
-                <span className="block text-primary ">Building Excellence,</span>
-                <span className="block">Crafting Trust</span>
+              <h1 className="text-4xl font-bold tracking-tight  text-zinc-900 dark:text-zinc-50 sm:text-5xl md:text-6xl">
+                <span className=" bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent  ">Building Excellence,</span>
+                <span className="block  bg-gradient-to-r from-slate-900 py-3 to-slate-700 bg-clip-text text-transparent    ">Crafting Trust</span>
               </h1>
             </motion.div>
 
-            <motion.p className="mt-6 max-w-3xl text-lg text-black  max-[1600px]:text-base  font-semibold " variants={itemVariants}>
+            <motion.p className="mt-6  bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent   max-w-3xl text-lg text-black  max-[1600px]:text-base  font-semibold " variants={itemVariants}>
               We have established a unique position among our customers by using the latest technology & highest quality
               materials for our construction work. As pioneers in the industry, we exceed expectations with our skilled
               team and timely delivery.
             </motion.p>
 
             <motion.div className="mt-8 flex flex-wrap gap-4" variants={itemVariants}>
-              <Button size="lg" className="gap-2">
-                Our Projects <ChevronRight className="h-4 w-4" />
+              <Button 
+            
+              onClick={()=> navigate('/properties')}
+              size="lg" className="gap-2 bg-gradient-to-r from-slate-900 to-slate-700">
+              Explore Properties <ChevronRight className="h-4 w-4" />
               </Button>
               <Button size="lg" variant="outline" className="gap-2">
                 Contact Us

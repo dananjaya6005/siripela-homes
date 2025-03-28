@@ -58,7 +58,9 @@ export default function PropertyCard({ type, id, bedrooms, bathrooms, area, imag
         <p className="mb-3 text-xs font-medium text-primary text-center">
           Timely Delivery • Driven By Customer Value • Obsession For Best Quality
         </p>
-        <Button className="w-full bg-primary hover:bg-primary-hover transition-colors">View Details</Button>
+        <Button 
+        variant='outline'
+        className="w-full  hover:ring-1 duration-300 ">View Details</Button>
       </CardFooter>
     </Card>
   )

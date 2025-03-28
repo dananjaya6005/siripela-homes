@@ -177,7 +177,7 @@ export const ProductCard = ({
       key={product.title}
       className="group/product  w-[30rem]  max-[1600px]:max-w-[400px] max-[1400px]:max-w-[350px] bg-red-700 relative shrink-0 rounded-2xl border border-b-0  md:w-[450px]"
     >
-          <div className="grid    w-full ">
+          <div className="grid w-full ">
 
           <Card
             className="overflow-hidden h-full border-0 shadow-xl bg-white dark:bg-slate-900 mb-5"
