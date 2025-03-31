@@ -7,6 +7,8 @@ import GradientButton from '@/components/nice-btn';
 import AnimatedTestimonialsDemo from '@/components/animated-testimonials-demo';
 import WhyChooseUs from '@/components/why-choose-us';
 import BankingPartners from '@/components/banking-partners';
+import { Button } from '@/components/ui/button';
+import { Phone, Mail } from 'lucide-react';
 
 const houseModels = [
   {
@@ -201,6 +203,32 @@ const Home = () => {
       <div>
         <BankingPartners />
       </div>
+
+
+      <section className="bg-gradient-to-r from-rose-800 to-amber-600 py-16 text-white rounded-2xl max-w-7xl mx-auto mt-24">
+        <div className="mx-auto max-w-4xl px-4 text-center">
+          <h2 className="mb-4 text-3xl font-bold">Have Questions? Get in Touch!</h2>
+          <p className="mb-8 text-lg text-emerald-100">
+            Our team is ready to assist you with all your real estate needs.
+          </p>
+          <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+
+          <a href="tel:+94112927505" className="inline-flex">
+            <Button  size="lg" variant="secondary">
+              <Phone className="mr-2 h-4 w-4" />
+              Call Now
+            </Button>
+            </a>
+
+            <a href="mailto:info@siripela.lk" className="inline-flex"> 
+            <Button size="lg" variant="outline" className="bg-transparent text-white hover:bg-white/10">
+              <Mail className="mr-2 h-4 w-4" />
+              Email Us
+            </Button>
+            </a>
+          </div>
+        </div>
+      </section>
 
       <div className='mt-24'>
         <iframe

@@ -1,122 +1,133 @@
-import React from 'react'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
-import { Button } from "../../components/ui/button";
-import { ArrowRight, Badge, Bath, Bed, Building, Building2, Eye, Home, Ruler } from "lucide-react";
-import { motion } from "framer-motion";
+import React, { useEffect , useMemo, useState} from 'react'
+import PropertyCard from '@/components/property-card'
+import supabase from '@/lib/supabaseClient';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
+import LoadingAnimation from '@/components/Loading';
 
 
-const buildingTypes = [
-  {
-    id: "single-storey",
-    title: "Single Storey House",
-    description: "Modern minimalist designs with optimal space utilization for comfortable living.",
-    features: ["Open floor plan", "Energy efficient", "Smart home integration"],
-    icon: <Home className="h-5 w-5" />,
-    image:
-      "https://files.catbox.moe/ilzddg.jpg",
-    color: "from-blue-600 to-blue-400",
-  },
-  {
-    id: "multi-storey",
-    title: "Multi Storey House",
-    description: "Elegant multi-level homes with contemporary aesthetics and functional spaces.",
-    features: ["Panoramic views", "Luxury finishes", "Sustainable design"],
-    icon: <Building2 className="h-5 w-5" />,
-    image: "https://files.catbox.moe/s91570.jpg",
-    color: "from-emerald-600 to-emerald-400",
-  },
-  {
-    id: "commercial",
-    title: "Commercial Building",
-    description: "Innovative commercial spaces designed for productivity and brand expression.",
-    features: ["Flexible layouts", "Premium amenities", "Strategic locations"],
-    icon: <Building className="h-5 w-5" />,
-    image: "https://files.catbox.moe/lwoapp.jpg",
-    color: "from-purple-600 to-purple-400",
-  },
-]
 
+const ITEMS_PER_PAGE = 9
 
 const CompletedProjects = () => {
 
-  const [activeCard, setActiveCard] = React.useState<number | null>(null)
+   const [completedProjects, setCompletedProjects] = useState([])
+   const [totalCount, setTotalCount] = useState(0);
+   const [currentPage, setCurrentPage] = useState(1)
+   const [totalPages, setTotalPages] = useState(0)
+   const [loading, setLoading] = useState(true)
+
+   useMemo(()=>{
+    window.scrollTo({ top: 0, behavior: "smooth" })
+   },[
+    currentPage
+   ])
+
+
+
+  useEffect(() => {
+    fetchSingleStoreyHouses();
+    getNumberofProperties();
+  }, [
+    currentPage
+  ])
+
+  const fetchSingleStoreyHouses = async () => {
+    setLoading(true)
+    const { data, error } = await supabase
+      .from('siripela-homes')
+      .select('*')
+      .eq('category', 'Completed Projects')
+      .range((currentPage -1)* ITEMS_PER_PAGE ,currentPage * ITEMS_PER_PAGE - 1 );
+      setCompletedProjects(data);
+
+    if (error) {
+      console.error('error', error)
+      return
+    }
+    
+    setLoading(false)
+
+    console.log('data',
+      data) 
+  }
+
+  async function getNumberofProperties() {
+    const { count } = await supabase
+      .from('siripela-homes')
+      .select('*', { count: 'exact' })
+      .eq('category', 'Completed Projects');
+
+    setTotalCount(count)
+    setTotalPages(Math.ceil(count / ITEMS_PER_PAGE))
+
+  
+  }
+
+  if(loading){
+    return <LoadingAnimation />
+  }
+  if(!completedProjects || completedProjects.length === 0){
+    return (
+      <div className="container px-4 py-12 mx-auto bg-gradient-to-b from-white to-secondary/5">
+        <h2 className="text-3xl font-bold text-primary mb-2">No Properties Available</h2>
+      </div>
+    )
+  }
+
 
 
   return (
-    <>
-    <div className="text-center text-3xl font-bold text-slate-800 dark:text-white mb-12">
-    <p>3D DESIGNS </p>
-    <p className='text-lg  font-normal text-slate-600 my-2'>
-    Bringing your ideas to life with precision and creativity. Explore our services for innovative, high-quality 3D solutions tailored to your needs.
-
-
-    </p>
-
-    </div>
-
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
-       {
-        buildingTypes.map((product , index)=>(
-              
-    <Card
-    className="overflow-hidden h-full border-0 shadow-xl bg-white dark:bg-slate-900 mb-5"
-    onMouseEnter={() => setActiveCard(product.id)}
-    onMouseLeave={() => setActiveCard(null)}
-  >
-    <div className="relative h-64 overflow-hidden  ">
-      <div className={`absolute inset-0 bg-gradient-to-r ${product.color} opacity-30 z-10`}></div>
-      <img
-        src={product.image || "/placeholder.svg"}
-        alt={product.title}
-        className="w-full h-full object-cover transition-transform duration-700 ease-in-out"
-        style={{
-          transform: activeCard === product.id ? "scale(1.1)" : "scale(1)",
-        }}
-      />
-      <div className="absolute top-4 left-4 z-20">
-        <Badge className=" text-white  border-0">
-          {product.icon}
-          <span className="ml-1">{product.title}</span>
-        </Badge>
+    <div className="container px-4 min-h-screen py-12 mx-auto bg-gradient-to-b from-white to-secondary/5">
+      <div className="mb-10 text-left">
+        <h2 className="text-3xl font-bold text-primary mb-2">
+          Completed Projects
+        </h2>
+        <div className=" mt-5 h-1 bg-secondary "></div>
       </div>
-    </div>
-
-    <CardHeader>
-      <CardTitle className="text-xl font-bold text-slate-800 dark:text-white">{product.title}</CardTitle>
-      <CardDescription>{product.description}</CardDescription>
-    </CardHeader>
-
-    <CardContent>
-      <ul className="space-y-2">
-        {product.features.map((feature, index) => (
-          <motion.li
-            key={index}
-            className="flex items-center text-sm"
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.1 + 0.3 }}
-          >
-            <div className="mr-2 h-1.5 w-1.5 rounded-full bg-primary"></div>
-            {feature}
-          </motion.li>
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {completedProjects.map((property) => (
+          <PropertyCard
+            key={property?.id}
+            type="Single Storey House"
+            title={property.client_name}
+            description={property.description}
+            id={property?.id}
+            bedrooms={property.bedrooms}
+            bathrooms={property.bathrooms}
+            area={property.area}
+            image={property.images}
+          />
         ))}
-      </ul>
-    </CardContent>
+      </div>
 
-    <CardFooter>
-      <Button className={`w-full bg-gradient-to-r ${product.color} hover:opacity-90 border-0 text-white`}>
-        <span>Explore Designs</span>
-        <ArrowRight className="ml-2 h-4 w-4" />
-      </Button>
-    </CardFooter>
-  </Card>
-        ))
-       }
+
+      <div className="flex justify-center mt-12">
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious className=' cursor-pointer ' onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} />
+            </PaginationItem>
+            {Array.from({ length: totalPages }, (_, index) => (
+              <PaginationItem className=' cursor-pointer ' key={index}>
+                <PaginationLink onClick={() => setCurrentPage(index + 1)}>{index + 1}</PaginationLink>
+              </PaginationItem>
+            ))}
+            <PaginationItem>
+              <PaginationNext className=' cursor-pointer ' onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+        </div>  
     </div>
-
-   
-    </>
-  )
+  );
 }
 
-export default CompletedProjects
+export default CompletedProjects;

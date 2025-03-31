@@ -55,19 +55,19 @@ export default function Navbar() {
                             title="Single Storey"
                             description="Modern single storey house designs"
                             href="/designs/single-storey-houses"
-                            src="https://files.catbox.moe/hbigqj.jpg"
+                            src="https://files.catbox.moe/wt7gdp.jpg"
                         />
                         <ProductItem
                             title="Multi Storey"
                             description="Elegant multi-level residential buildings"
                             href="/designs/multi-storey-houses"
-                            src="https://files.catbox.moe/1b7bcx.jpg"
+                            src="https://files.catbox.moe/f87ci0.jpg"
                         />
                         <ProductItem
                             title="Commercial Buildings"
                             description="Professional commercial architecture"
                             href="/designs/commercial-buildings"
-                            src="https://files.catbox.moe/odnnav.png"
+                            src="https://files.catbox.moe/61nf5b.jpg"
                         />
                     </div>
                 </MenuItem>

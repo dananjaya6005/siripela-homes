@@ -16,6 +16,7 @@ import { useLocation } from "react-router-dom";
 import PropertyListing from "./pages/PropertyByID";
 import MultiStoreyHouses from "./pages/designs/MultiStoreyHouses";
 import CommercialBuildings from "./pages/designs/CommercialBuildings";
+import ContactUs from "./pages/ContactUs";
 
 
 function App() {
@@ -93,6 +94,17 @@ function App() {
           element={
             <div className="root">
               <div>Not Found</div>
+            </div>
+          }
+        />
+
+
+
+        <Route
+          path="contact"
+          element={
+            <div className="root">
+              <ContactUs />
             </div>
           }
         />
