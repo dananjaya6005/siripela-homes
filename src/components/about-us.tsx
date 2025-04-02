@@ -26,7 +26,7 @@ export default function AboutUsSection() {
             </div>
   
             {/* Text content */}
-            <div className="text-gray-600 leading-relaxed">
+            <div className="text-gray-600 leading-relaxed  max-sm:px-4">
               <p className="mb-4">
                 We have established a unique position among our customer minds as we use the latest technology & highest
                 quality material for our construction work. As an esteemed player in the industry, we are pioneers in

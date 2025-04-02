@@ -30,7 +30,7 @@ export default function Navbar() {
     flex items-center justify-between border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/70 mx-0">
     <div className="w-full flex h-16 items-center justify-between px-0">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2 w-40 pb-2">
+        <Link to="/" className="flex items-center space-x-2 w-40 max-sm:w-32 pb-2">
             <img src={logo} alt="Logo" className="rounded-md " />
         </Link>
 
@@ -85,8 +85,8 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <Sheet>
             <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="lg:hidden">
-                    <Menu className="h-6 w-6" />
+                <Button variant="ghost" size="icon" className="lg:hidden bg-white mr-4 ">
+                    <Menu className="size-6" />
                     <span className="sr-only">Toggle menu</span>
                 </Button>
             </SheetTrigger>
@@ -108,7 +108,7 @@ function MobileNav() {
   }
 
   return (
-    <nav className="flex flex-col space-y-4 pt-10">
+    <nav className="flex flex-col space-y-4 pt-10 p-5">
       <Link to="/" className="text-lg  font-medium">
         Home
       </Link>

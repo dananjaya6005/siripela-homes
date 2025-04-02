@@ -1,11 +1,13 @@
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState , useMemo } from "react"
 import { motion, useScroll, useTransform, useSpring, type MotionValue } from "motion/react"
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { ArrowRight, Badge, Bath, Bed, Building, Building2, Eye, Home, Ruler } from "lucide-react";
 import HeroSection from "./hero-section";
+import ProductCarousel from "./HeroCardFormobile";
+import { useMediaQuery } from "@/hook/use-mobile";
 
 import { Menu } from "./nav-bar";
 
@@ -62,6 +64,21 @@ export const HeroParallax = ({
     })
     const [loaded, setLoaded] = useState(false)
 
+    const isMobile = useMediaQuery("(max-width: 768px)")
+    const isDesktop = useMediaQuery("(min-width: 769px)")
+
+     const bgImage = useMemo(() => {
+        if (isMobile) {
+          return "https://files.catbox.moe/1jeqjz.jpg"
+        }
+        if (isDesktop) {
+          return "https://files.catbox.moe/9jw554.jpg"
+        }
+        return "https://files.catbox.moe/9jw554.jpg"
+      }
+      , [isMobile, isDesktop])
+     
+
     useEffect(() => {
         const img = new Image()
         img.src = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-VezP29DIwyOpXeg6gFBoGynOMHj8Ne.png"
@@ -80,7 +97,7 @@ export const HeroParallax = ({
   return (
     <div
       ref={ref}
-      className=" bg-gradient-to-b from-amber-500 to-slate-50 pt-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className=" bg-gradient-to-b from-amber-500 to-slate-50 pt-40 max-sm:pt-10 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
       <div className="custom-shape-divider-bottom-1742205806">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -91,22 +108,37 @@ export const HeroParallax = ({
         <div
           className={`
             relative w-full h-full
+             max-sm:mix-blend-screen
+           
            bg-right-top  
-        mix-blend-difference  bg-no-repeat  
-            invert 
-             bg-opacity-50
+         mix-blend-difference
+
+        invert
+        bg-no-repeat  
+           
+       
             transition-opacity duration-500
             ${loaded ? "opacity-100" : "opacity-0"}
           `}
           style={{
             backgroundImage: "url('https://files.catbox.moe/9jw554.jpg')",
+          
+          
+        
           }}
         />
       </div>
      
 
       <Header />
+      
+      <div className="sm:hidden max-sm:block max-sm:mt-10">
+      <ProductCarousel />
+      </div>
+      
+      <div className=" max-sm:hidden">
       <motion.div
+
         style={{
           rotateX,
           rotateZ,
@@ -143,6 +175,7 @@ export const HeroParallax = ({
           ))}
         </motion.div>
       </motion.div>
+      </div>
     </div>
   );
 }
@@ -175,7 +208,7 @@ export const ProductCard = ({
         y: -20,
       }}
       key={product.title}
-      className="group/product  w-[30rem]  max-[1600px]:max-w-[400px] max-[1400px]:max-w-[350px] bg-red-700 relative shrink-0 rounded-2xl border border-b-0  md:w-[450px]"
+      className="group/product  w-[30rem]  max-[1600px]:max-w-[400px] max-[1400px]:max-w-[350px]  relative shrink-0 rounded-2xl border border-b-0  md:w-[450px]"
     >
           <div className="grid w-full ">
 

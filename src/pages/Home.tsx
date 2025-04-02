@@ -164,8 +164,8 @@ const Home = () => {
       </div>
 
       <div>
-        <section className="py-8">
-          <div className="mb-8 text-center">
+        <section className="py-8 ">
+          <div className="mb-8 text-center max-sm:mx-2 ">
             <h2 className="text-3xl font-bold tracking-tight mb-2">
               Design Your Dream Home
             </h2>
@@ -205,13 +205,13 @@ const Home = () => {
       </div>
 
 
-      <section className="bg-gradient-to-r from-rose-800 to-amber-600 py-16 text-white rounded-2xl max-w-7xl mx-auto mt-24">
+      <section className="bg-gradient-to-r from-rose-800 to-amber-600 py-16 text-white rounded-2xl max-w-7xl mx-auto mt-24 max-sm:m-2 max-sm:mt-12">
         <div className="mx-auto max-w-4xl px-4 text-center">
           <h2 className="mb-4 text-3xl font-bold">Have Questions? Get in Touch!</h2>
           <p className="mb-8 text-lg text-emerald-100">
             Our team is ready to assist you with all your real estate needs.
           </p>
-          <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+          <div className="flex flex-col max-sm:flex-row max-sm:justify-center gap-4 sm:flex-row sm:justify-center">
 
           <a href="tel:+94112927505" className="inline-flex">
             <Button  size="lg" variant="secondary">
