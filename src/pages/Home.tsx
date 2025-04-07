@@ -183,7 +183,9 @@ const Home = () => {
             />
           </div>
           <div className="flex w-full">
-            <GradientButton className="w-full max-w-xs mx-auto mt-8  ">
+            <GradientButton 
+             href='projects/designs3d'
+             className="w-full max-w-xs mx-auto mt-8  ">
               Explore All Models
             </GradientButton>
           </div>

@@ -3,18 +3,29 @@ import type React from "react"
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { useNavigate } from "react-router-dom"
 
 export default function GradientButton({
+  href,
   children = "Click me",
   className = "",
 }: {
   children?: React.ReactNode
   className?: string
+  href ?: string
 }) {
-  const [isHovering, setIsHovering] = useState(false)
+  const [isHovering, setIsHovering] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <Button
+    onClick={()=>{
+      if (href) {
+        navigate(href);
+      } else {
+        console.log("Button clicked!")
+      }
+    }}
       className={`relative overflow-hidden transition-all duration-300 transform hover:scale-105 active:scale-95 ${className}`}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
